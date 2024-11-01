@@ -42,8 +42,7 @@ const Sidenav = ({ color = "info", brand = "", brandName, routes, ...rest }: Sid
     // 1. props에 ="value"가 있으면 default로 지정하는 것
     const location = useLocation();
     const { pathname } = location;
-    const collapseName = pathname.split("/").slice(1)[0];
-
+    const collapseName = pathname.split("/").slice(1)[0] === ""? "dashboard" : pathname.split("/").slice(1)[0]
 
     const { state, setPage } = usePageController();
 
@@ -63,7 +62,7 @@ const Sidenav = ({ color = "info", brand = "", brandName, routes, ...rest }: Sid
     // Render all the routes from the routes.js (All the visible items on the Sidenav)
     const renderRoutes = routes.map(({ type, name, icon, title, noCollapse, key, route, href }: RoutesProps) => {
         let returnValue;
-        if (state.page === key){ // 현재 페이지이면 아이콘과 버튼 스타일 변경해야함
+        if (state.page === key){ // 현재 페이지이면 아이콘과 버튼 스타일 변경해야 함
             returnValue = (
                 <NavLink to={route} key={key}>
                     <SidenavCollapse

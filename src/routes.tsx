@@ -44,7 +44,6 @@ const routes = [
     component: <Billing />,
     noCollapse: true,
   },
-  { type: "title", title: "Account Pages", key: "account-pages" },
   {
     type: "collapse",
     name: "Profile",
