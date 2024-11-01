@@ -9,7 +9,7 @@ export default styled(Drawer)<StyledDrawerProps>(({ theme, miniSidenav }) => {
   const { palette, transitions, breakpoints } = theme;
   
   const sidebarWidth = 250;
-  const { primary } = palette;
+  const { background } = palette;
   const xxl  = "0px 10px 30px rgba(0, 0, 0, 0.1)";
 
   // styles for the sidenav when miniSidenav={false}
@@ -20,7 +20,7 @@ export default styled(Drawer)<StyledDrawerProps>(({ theme, miniSidenav }) => {
     }),
 
     [breakpoints.up("xl")]: {
-      backgroundColor: primary.main,
+      backgroundColor: background,
       boxShadow: xxl,
       marginBottom: "inherit",
       left: "0",
@@ -41,11 +41,11 @@ export default styled(Drawer)<StyledDrawerProps>(({ theme, miniSidenav }) => {
     }),
 
     [breakpoints.up("xl")]: {
-      backgroundColor: primary.main,
+      backgroundColor: background,
       boxShadow: xxl,
       marginBottom: "inherit",
       left: "0",
-      width: sidebarWidth / 2, // 사이드바 너비 조정
+      width: sidebarWidth, // 사이드바 너비 조정
       overflowX: "hidden",
       transform: "translateX(0)",
       transition: transitions.create(["width", "background-color"], {
