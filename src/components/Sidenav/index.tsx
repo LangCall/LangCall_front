@@ -63,7 +63,7 @@ const Sidenav = ({ color = "info", brand = "", brandName, routes, ...rest }: Sid
     // Render all the routes from the routes.js (All the visible items on the Sidenav)
     const renderRoutes = routes.map(({ type, name, icon, title, noCollapse, key, route, href }: RoutesProps) => {
         let returnValue;
-        if (state.page === key){
+        if (state.page === key){ // 현재 페이지이면 아이콘과 버튼 스타일 변경해야함
             returnValue = (
                 <NavLink to={route} key={key}>
                     <SidenavCollapse
