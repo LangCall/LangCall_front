@@ -11,6 +11,8 @@ import Icon from "@mui/material/Icon";
 
 // component
 import SidenavCollapse from "components/Sidenav/SidenavCollapse";
+import SidenavRoot from "components/Sidenav/SidenavRoot"
+import SoftBox from 'components/SoftBox';
 
 // props의 타입을 지정하는 인터페이스
 // type으로도 가능 type SidenavProps = { ~:~; ... }
@@ -31,12 +33,12 @@ interface RoutesProps {
     noCollapse: boolean;
     key: string;
     route: string;
-    href? : any;
+    href?: any;
 }
 
 const Sidenav = ({ color = "info", brand = "", brandName, routes, ...rest }: SidenavProps) => {
     // 1. props에 ="value"가 있으면 default로 지정하는 것
-    
+
     const location = useLocation();
     const { pathname } = location;
     const collapseName = pathname.split("/").slice(1)[0];
@@ -47,51 +49,18 @@ const Sidenav = ({ color = "info", brand = "", brandName, routes, ...rest }: Sid
     const renderRoutes = routes.map(({ type, name, icon, title, noCollapse, key, route, href }: RoutesProps) => {
         let returnValue;
 
-        if (type === "collapse") {
-            returnValue = href ? (
-                <Link
-                    href={href}
+        returnValue = (
+            <NavLink to={route} key={key}>
+                <SidenavCollapse
+                    color={color}
                     key={key}
-                    target="_blank"
-                    rel="noreferrer"
-                    sx={{ textDecoration: "none" }}
-                >
-                    <SidenavCollapse
-                        color={color}
-                        name={name}
-                        icon={icon}
-                        active={key === collapseName}
-                        noCollapse={noCollapse}
-                    />
-                </Link>
-            ) : (
-                <NavLink to={route} key={key}>
-                    <SidenavCollapse
-                        color={color}
-                        key={key}
-                        name={name}
-                        icon={icon}
-                        active={key === collapseName}
-                        noCollapse={noCollapse}
-                    />
-                </NavLink>
-            );
-        } else if (type === "title") {
-            returnValue = (
-                <NavLink to={route} key={key}>
-                    <SidenavCollapse
-                        color={color}
-                        key={key}
-                        name={name}
-                        icon={icon}
-                        active={key === collapseName}
-                        noCollapse={noCollapse}
-                    />
-                </NavLink>
-            );
-        } else if (type === "divider") {
-            returnValue = <Divider key={key} />;
-        }
+                    name={name}
+                    icon={icon}
+                    active={key === collapseName}
+                    noCollapse={noCollapse}
+                />
+            </NavLink>
+        );
 
         return returnValue;
 
@@ -100,7 +69,37 @@ const Sidenav = ({ color = "info", brand = "", brandName, routes, ...rest }: Sid
 
     return (
         <>
-            {renderRoutes}
+            <SidenavRoot open={true} miniSidenav={true}>
+                <SoftBox pt={3} pb={1} px={4} textAlign="center">
+                    <SoftBox component={NavLink} to="/" display="flex" alignItems="center" background-color="blue">
+                        {brand && <SoftBox component="img" src={brand} alt="Soft UI Logo" width="2rem" />}
+                        <SoftBox
+                            width={!brandName && "100%"}
+                        >
+                            {brandName}
+                        </SoftBox>
+                    </SoftBox>
+                </SoftBox>
+                <Divider />
+                <List>{renderRoutes}</List>
+                <SoftBox pt={2} my={2} mx={2} mt="auto">
+                    {/* <SidenavCard />
+                    <SoftBox mt={2}>
+                        <SoftButton
+                            component="a"
+                            href="https://creative-tim.com/product/soft-ui-dashboard-pro-react"
+                            target="_blank"
+                            rel="noreferrer"
+                            variant="gradient"
+                            color={color}
+                            fullWidth
+                        >
+                            upgrade to pro
+                        </SoftButton>
+                    </SoftBox> */}
+                </SoftBox>
+                {/* {renderRoutes} */}
+            </SidenavRoot>
         </>
     );
 }

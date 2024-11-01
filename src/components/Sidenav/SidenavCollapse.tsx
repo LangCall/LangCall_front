@@ -36,7 +36,6 @@ interface SidenavCollapseProps {
 }
 
 function SidenavCollapse({ color, icon, name, children, active, noCollapse, open, ...rest }:SidenavCollapseProps) {
-    
     return (
         <>
             <ListItem component="li">

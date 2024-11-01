@@ -13,6 +13,8 @@ import theme from "assets/theme";
 
 // Side
 import Sidenav from "components/Sidenav";
+// Images
+import brand from "assets/images/logo-ct.png";
 
 //files
 import './App.css';
@@ -20,11 +22,7 @@ import routes from "./routes"
 
 function App() {
   const [onMouseEnter, setOnMouseEnter] = useState(false);
-
   const sidenavColor = "info"
-  const brand = "LangCall"
-
-
 
   // Open sidenav when mouse enter on mini sidenav
   const handleOnMouseEnter = () => {
