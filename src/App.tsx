@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useMemo  } from 'react';
 
 // react-router components
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
@@ -20,9 +20,45 @@ import brand from "assets/images/logo-ct.png";
 import './App.css';
 import routes from "./routes"
 
+
+
+interface RouteType {
+  type: string,
+    name: string,
+    key: string,
+    route: string,
+    icon?: React.FC,
+    component?: any,
+    noCollapse: boolean,
+    collapse?: string
+}
+
+
+
 function App() {
   const [onMouseEnter, setOnMouseEnter] = useState(false);
   const sidenavColor = "info"
+  const { pathname } = useLocation();
+
+
+  // Setting page scroll to 0 when changing the route
+  useEffect(() => {
+    document.documentElement.scrollTop = 0;
+    console.log("App", pathname)
+  }, [pathname]);
+
+  const getRoutes = (allRoutes:any) => allRoutes.map((route:RouteType) => {
+        if (route.collapse) {
+          return getRoutes(route.collapse);
+        }
+
+        if (route.route) {
+          return <Route path={route.route} element={route.component} key={route.key} />;
+        }
+
+        return null;
+      });
+
 
   // Open sidenav when mouse enter on mini sidenav
   const handleOnMouseEnter = () => {
@@ -51,8 +87,7 @@ function App() {
         onMouseLeave={handleOnMouseLeave}
       />
       <Routes>
-        {/* {getRoutes(routes)} */}
-        <Route path="*" element={<Navigate to="/dashboard" />} />
+        {getRoutes(routes)}
       </Routes>
     </ThemeProvider>
   );

@@ -38,10 +38,16 @@ interface RoutesProps {
 
 const Sidenav = ({ color = "info", brand = "", brandName, routes, ...rest }: SidenavProps) => {
     // 1. props에 ="value"가 있으면 default로 지정하는 것
-
     const location = useLocation();
     const { pathname } = location;
     const collapseName = pathname.split("/").slice(1)[0];
+    console.log(collapseName)
+
+
+    useEffect(() => {
+        console.log("현재페이지" ,collapseName)
+    }, [location]);
+
 
 
 
@@ -63,7 +69,6 @@ const Sidenav = ({ color = "info", brand = "", brandName, routes, ...rest }: Sid
         );
 
         return returnValue;
-
     });
 
 
@@ -82,23 +87,6 @@ const Sidenav = ({ color = "info", brand = "", brandName, routes, ...rest }: Sid
                 </SoftBox>
                 <Divider />
                 <List>{renderRoutes}</List>
-                <SoftBox pt={2} my={2} mx={2} mt="auto">
-                    {/* <SidenavCard />
-                    <SoftBox mt={2}>
-                        <SoftButton
-                            component="a"
-                            href="https://creative-tim.com/product/soft-ui-dashboard-pro-react"
-                            target="_blank"
-                            rel="noreferrer"
-                            variant="gradient"
-                            color={color}
-                            fullWidth
-                        >
-                            upgrade to pro
-                        </SoftButton>
-                    </SoftBox> */}
-                </SoftBox>
-                {/* {renderRoutes} */}
             </SidenavRoot>
         </>
     );
