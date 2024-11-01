@@ -1,46 +1,50 @@
-import React, { createContext, useContext, useReducer } from "react";
+import { createContext, useReducer } from "react";
 
-// State와 Action 타입 정의
-interface State {
-  currentPage: string;
+// 상태 타입 정의
+interface StateType {
+  page: string;
+  user?: string;
 }
 
-type Action = 
-  | { type: "SET_PAGE"; payload: string };
+// 액션 타입 정의
+interface ActionType {
+  type: string;
+  payload?: {
+    page?: string;
+    user?: string;
+  };
+}
 
-// Context와 Provider 생성
-const NavigationContext = createContext<{ state: State; dispatch: React.Dispatch<Action> } | undefined>(undefined);
 
-const initialState: State = {
-  currentPage: "/",
+// 초기 상태 정의
+const initialState: StateType = {
+  page: "dashboard",
+  user: "user",
 };
 
-// Reducer 함수 정의
-const navigationReducer = (state: State, action: Action): State => {
+// 리듀서 함수 정의
+function reducer(state: StateType, action: ActionType): StateType {
   switch (action.type) {
-    case "SET_PAGE":
-      return { ...state, currentPage: action.payload };
+    case 'SET_PAGE':
+      return {
+        ...state,
+        page: action.payload?.page || state.page,
+        user: action.payload?.user || state.user,
+      };
     default:
-      return state;
+      throw new Error(`Unhandled action type: ${action.type}`);
   }
-};
+}
 
-// Provider 컴포넌트 정의
-export const NavigationProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [state, dispatch] = useReducer(navigationReducer, initialState);
-  
-  return (
-    <NavigationContext.Provider value={{ state, dispatch }}>
-      {children}
-    </NavigationContext.Provider>
-  );
-};
+// 커스텀 훅 정의
+function usePageController() {
+  const [state, dispatch] = useReducer(reducer, initialState);
 
-// Context 사용을 위한 커스텀 Hook
-export const useNavigation = () => {
-  const context = useContext(NavigationContext);
-  if (!context) {
-    throw new Error("useNavigation must be used within a NavigationProvider");
-  }
-  return context;
-};
+  const setPage = (value: string, user: string) => {
+    dispatch({ type: 'SET_PAGE', payload: { page: value, user: user } });
+  };
+
+  return { state, setPage };
+}
+
+export default usePageController;

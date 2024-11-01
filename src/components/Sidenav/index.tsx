@@ -14,6 +14,8 @@ import SidenavCollapse from "components/Sidenav/SidenavCollapse";
 import SidenavRoot from "components/Sidenav/SidenavRoot"
 import SoftBox from 'components/SoftBox';
 
+import usePageController  from 'context'
+
 // props의 타입을 지정하는 인터페이스
 // type으로도 가능 type SidenavProps = { ~:~; ... }
 interface SidenavProps {
@@ -41,32 +43,53 @@ const Sidenav = ({ color = "info", brand = "", brandName, routes, ...rest }: Sid
     const location = useLocation();
     const { pathname } = location;
     const collapseName = pathname.split("/").slice(1)[0];
-    console.log(collapseName)
 
+
+    const { state, setPage } = usePageController();
 
     useEffect(() => {
         console.log("현재페이지" ,collapseName)
+        // reducer로 지정
+        setPage(collapseName, "")
+        // console.log("reducer 사용 후 컨트롤러", state)
     }, [location]);
 
-
+    // state가 바뀌었을 때(페이지가 바뀌었을 떄)
+    useEffect(() =>{
+        console.log("reducer 사용 후 컨트롤러", state)
+    },[state])
 
 
     // Render all the routes from the routes.js (All the visible items on the Sidenav)
     const renderRoutes = routes.map(({ type, name, icon, title, noCollapse, key, route, href }: RoutesProps) => {
         let returnValue;
-
-        returnValue = (
-            <NavLink to={route} key={key}>
-                <SidenavCollapse
-                    color={color}
-                    key={key}
-                    name={name}
-                    icon={icon}
-                    active={key === collapseName}
-                    noCollapse={noCollapse}
-                />
-            </NavLink>
-        );
+        if (state.page === key){
+            returnValue = (
+                <NavLink to={route} key={key}>
+                    <SidenavCollapse
+                        color={color}
+                        key={key}
+                        name={name}
+                        icon={icon}
+                        active={key === collapseName}
+                        noCollapse={noCollapse}
+                    />
+                </NavLink>
+            );
+        }else {
+            returnValue = (
+                <NavLink to={route} key={key}>
+                    <SidenavCollapse
+                        color={color}
+                        key={key}
+                        name={name}
+                        icon={icon}
+                        active={key === collapseName}
+                        noCollapse={noCollapse}
+                    />
+                </NavLink>
+            );
+        }
 
         return returnValue;
     });

@@ -44,7 +44,7 @@ function App() {
   // Setting page scroll to 0 when changing the route
   useEffect(() => {
     document.documentElement.scrollTop = 0;
-    console.log("App", pathname)
+  
   }, [pathname]);
 
   const getRoutes = (allRoutes:any) => allRoutes.map((route:RouteType) => {
