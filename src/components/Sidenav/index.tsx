@@ -19,7 +19,7 @@ import usePageController  from 'context'
 // props의 타입을 지정하는 인터페이스
 // type으로도 가능 type SidenavProps = { ~:~; ... }
 interface SidenavProps {
-    color: "primary" | "secondary" | "info" | "success" | "warning" | "error" | "dark";
+    color: "primary" | "secondary" | "info" | "success" | "warning" | "error" | "dark" | "white";
     brand: string;
     brandName: string;
     routes: any;
@@ -38,7 +38,7 @@ interface RoutesProps {
     href?: any;
 }
 
-const Sidenav = ({ color = "info", brand = "", brandName, routes, ...rest }: SidenavProps) => {
+const Sidenav = ({ color = "white", brand = "", brandName, routes, ...rest }: SidenavProps) => {
     // 1. props에 ="value"가 있으면 default로 지정하는 것
     const location = useLocation();
     const { pathname } = location;
@@ -97,11 +97,13 @@ const Sidenav = ({ color = "info", brand = "", brandName, routes, ...rest }: Sid
     return (
         <>
             <SidenavRoot open={true} miniSidenav={true}>
-                <SoftBox pt={3} pb={1} px={4} textAlign="center">
+                <SoftBox pt={3} pb={1} px={4} textAlign="center" >
                     <SoftBox component={NavLink} to="/" display="flex" alignItems="center" background-color="blue">
                         {brand && <SoftBox component="img" src={brand} alt="Soft UI Logo" width="2rem" />}
                         <SoftBox
                             width={!brandName && "100%"}
+                            textAlign="center"
+                            pl={2}
                         >
                             {brandName}
                         </SoftBox>
@@ -116,7 +118,7 @@ const Sidenav = ({ color = "info", brand = "", brandName, routes, ...rest }: Sid
 
 // 2. props에 있는 것에 default로 지정하는 것
 Sidenav.defaultProps = {
-    color: "info",
+    color: "wthie",
     brand: ""
 }
 

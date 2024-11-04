@@ -20,7 +20,7 @@ import SoftBox from "components/SoftBox";
 
 
 interface SidenavCollapseProps {
-    color: "primary" | "secondary" | "info" | "success" | "warning" | "error" | "dark";
+    color: "primary" | "secondary" | "info" | "success" | "warning" | "error" | "dark" | "white";
     icon?: any;
     name: string;
     children?: any;
@@ -61,7 +61,7 @@ function SidenavCollapse({ color, icon, name, children, active, noCollapse, open
 
 // Setting default values for the props of SidenavCollapse
 SidenavCollapse.defaultProps = {
-    color: "info",
+    color: "white",
     active: false,
     noCollapse: false,
     children: false,
