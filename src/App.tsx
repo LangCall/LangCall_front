@@ -14,7 +14,7 @@ import theme from "assets/theme";
 // Side
 import Sidenav from "components/Sidenav";
 // Images
-import brand from "assets/images/logo-ct.png";
+import brand from "assets/images/langcall-logo.png";
 
 //files
 import './App.css';
