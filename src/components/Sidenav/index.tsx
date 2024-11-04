@@ -14,7 +14,7 @@ import SidenavCollapse from "components/Sidenav/SidenavCollapse";
 import SidenavRoot from "components/Sidenav/SidenavRoot"
 import SoftBox from 'components/SoftBox';
 
-import usePageController  from 'context'
+import {usePageContext, setPage}  from 'context'
 
 // props의 타입을 지정하는 인터페이스
 // type으로도 가능 type SidenavProps = { ~:~; ... }
@@ -44,12 +44,13 @@ const Sidenav = ({ color = "pink", brand = "", brandName, routes, ...rest }: Sid
     const { pathname } = location;
     const collapseName = pathname.split("/").slice(1)[0] === ""? "dashboard" : pathname.split("/").slice(1)[0]
 
-    const { state, setPage } = usePageController();
+    // reducer로 값 가져오기
+    const { state, dispatch } = usePageContext();
 
     useEffect(() => {
         console.log("현재페이지" ,collapseName)
         // reducer로 지정
-        setPage(collapseName, "")
+        setPage(dispatch, collapseName)
         // console.log("reducer 사용 후 컨트롤러", state)
     }, [location]);
 
