@@ -84,6 +84,11 @@ const colors = {
     focus: "#344767",
   },
 
+  pink:{
+    main: "#ff7c7c",
+    focus: "#ff7c7c",
+  },
+
   grey: {
     100: "#f8f9fa",
     200: "#e9ecef",

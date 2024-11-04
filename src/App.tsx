@@ -37,7 +37,7 @@ interface RouteType {
 
 function App() {
   const [onMouseEnter, setOnMouseEnter] = useState(false);
-  const sidenavColor = "info"
+  const sidenavColor = "pink"
   const { pathname } = useLocation();
 
 

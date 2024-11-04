@@ -20,7 +20,7 @@ import SoftBox from "components/SoftBox";
 
 
 interface SidenavCollapseProps {
-    color: "primary" | "secondary" | "info" | "success" | "warning" | "error" | "dark" | "white";
+    color: "primary" | "secondary" | "info" | "success" | "warning" | "error" | "dark" | "white" | "pink";
     icon?: any;
     name: string;
     children?: any;

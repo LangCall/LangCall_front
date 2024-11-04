@@ -19,7 +19,7 @@ import usePageController  from 'context'
 // props의 타입을 지정하는 인터페이스
 // type으로도 가능 type SidenavProps = { ~:~; ... }
 interface SidenavProps {
-    color: "primary" | "secondary" | "info" | "success" | "warning" | "error" | "dark" | "white";
+    color: "primary" | "secondary" | "info" | "success" | "warning" | "error" | "dark" | "white" | "pink";
     brand: string;
     brandName: string;
     routes: any;
@@ -38,7 +38,7 @@ interface RoutesProps {
     href?: any;
 }
 
-const Sidenav = ({ color = "white", brand = "", brandName, routes, ...rest }: SidenavProps) => {
+const Sidenav = ({ color = "pink", brand = "", brandName, routes, ...rest }: SidenavProps) => {
     // 1. props에 ="value"가 있으면 default로 지정하는 것
     const location = useLocation();
     const { pathname } = location;
@@ -118,7 +118,7 @@ const Sidenav = ({ color = "white", brand = "", brandName, routes, ...rest }: Si
 
 // 2. props에 있는 것에 default로 지정하는 것
 Sidenav.defaultProps = {
-    color: "wthie",
+    color: "pink",
     brand: ""
 }
 
