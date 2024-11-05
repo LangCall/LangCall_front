@@ -1,29 +1,19 @@
-/**
-=========================================================
-* Soft UI Dashboard React - v4.0.1
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/soft-ui-dashboard-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
 // @mui material components
 import Drawer from "@mui/material/Drawer";
 import { styled } from "@mui/material/styles";
 
-export default styled(Drawer)(({ theme, ownerState }) => {
-  const { boxShadows, functions, transitions } = theme;
-  const { openConfigurator } = ownerState;
+interface ownerStateProps {
+  ownerState : boolean;
+}
+
+
+
+export default styled(Drawer)<ownerStateProps>(({ theme, ownerState }) => {
+  const {  transitions } = theme;
+  const openConfigurator = ownerState;
 
   const configuratorWidth = 360;
-  const { lg } = boxShadows;
-  const { pxToRem } = functions;
+  const lg = `0 1rem 3rem rgba($black, .175);`;
 
   // drawer styles when openConfigurator={true}
   const drawerOpenStyles = () => ({
@@ -39,7 +29,7 @@ export default styled(Drawer)(({ theme, ownerState }) => {
   // drawer styles when openConfigurator={false}
   const drawerCloseStyles = () => ({
     left: "initial",
-    right: pxToRem(-350),
+    right: `-350px`,
     transition: transitions.create("all", {
       easing: transitions.easing.sharp,
       duration: transitions.duration.short,
@@ -50,7 +40,7 @@ export default styled(Drawer)(({ theme, ownerState }) => {
     "& .MuiDrawer-paper": {
       height: "100vh",
       margin: 0,
-      padding: `0 ${pxToRem(10)}`,
+      padding: `0 15px`,
       borderRadius: 0,
       boxShadow: lg,
       overflowY: "auto",

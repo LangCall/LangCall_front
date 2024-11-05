@@ -19,7 +19,7 @@ const initialState: StateType = {
   page: "dashboard",
   user: "user",
   sidenavColor: "pink",
-  openConfigurator: false,
+  openConfigurator: true,
 };
 
 // 리듀서 함수 정의
