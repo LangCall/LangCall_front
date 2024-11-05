@@ -19,7 +19,7 @@ import brand from "assets/images/langcall-logo.png";
 //files
 import './App.css';
 import routes from "./routes"
-
+import Configurator from 'components/Configurator';
 
 
 interface RouteType {
@@ -89,6 +89,7 @@ function App() {
       <Routes>
         {getRoutes(routes)}
       </Routes>
+      {/* <Configurator /> */}
     </ThemeProvider>
   );
 }

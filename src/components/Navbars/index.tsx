@@ -1,18 +1,3 @@
-/**
-=========================================================
-* Soft UI Dashboard React - v4.0.1
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/soft-ui-dashboard-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
 import { useState, useEffect } from "react";
 
 // react-router components
@@ -22,7 +7,7 @@ import { useLocation, Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 // @material-ui core components
-import AppBar from "@mui/material/AppBar";
+// import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
@@ -38,19 +23,25 @@ import {
   navbarRow,
   navbarIconButton,
   navbarMobileMenu,
-} from "components/Navbars/DashboardNavbar/styles";
+} from "components/Navbars/styles";
 
-// Soft UI Dashboard React context
+
 import {
   usePageContext,
   setOpenConfigurator,
 } from "context";
 
-function DashboardNavbar({ absolute, light, isMini }) {
-  const [navbarType, setNavbarType] = useState();
-  const [controller, dispatch] = usePageContext();
-  const { miniSidenav, transparentNavbar, fixedNavbar, openConfigurator } = controller;
-  const [openMenu, setOpenMenu] = useState(false);
+interface dashboardNavbarProps {
+  absolute: string,
+  light: string,
+}
+
+
+function DashboardNavbar({ absolute, light }: dashboardNavbarProps) {
+  const [navbarType, setNavbarType] = useState<string>();
+  const { state, dispatch } = usePageContext();
+  const { openConfigurator, fixedNavbar } = state;
+  const [openMenu, setOpenMenu] = useState<any>();
   const route = useLocation().pathname.split("/").slice(1);
 
   useEffect(() => {
@@ -63,14 +54,14 @@ function DashboardNavbar({ absolute, light, isMini }) {
   }, [dispatch, fixedNavbar]);
 
   const handleConfiguratorOpen = () => setOpenConfigurator(dispatch, !openConfigurator);
-  const handleOpenMenu = (event) => setOpenMenu(event.currentTarget);
+  const handleOpenMenu = (event:any) => setOpenMenu(event.currentTarget);
   const handleCloseMenu = () => setOpenMenu(false);
 
   // Render the notifications menu
   const renderMenu = () => (
     <Menu
       anchorEl={openMenu}
-      anchorReference={null}
+      anchorReference={openMenu}
       anchorOrigin={{
         vertical: "bottom",
         horizontal: "left",
@@ -84,28 +75,18 @@ function DashboardNavbar({ absolute, light, isMini }) {
   );
 
   return (
-    <AppBar
-      position={absolute ? "absolute" : navbarType}
-      color="inherit"
-      sx={(theme) => navbar(theme, { transparentNavbar, absolute, light })}
-    >
+    
       <Toolbar sx={(theme) => navbarContainer(theme)}>
-        <SoftBox color="inherit" mb={{ xs: 1, md: 0 }} sx={(theme) => navbarRow(theme, { isMini })}>
-          
+        <SoftBox color="inherit" mb={{ xs: 1, md: 0 }} sx={(theme:any) => navbarRow(theme)}>
         </SoftBox>
-        {isMini ? null : (
-          <SoftBox sx={(theme) => navbarRow(theme, { isMini })}>
+          <SoftBox sx={(theme:any) => navbarRow(theme)}>
             <SoftBox pr={1}>
               
             </SoftBox>
             <SoftBox color={light ? "white" : "inherit"}>
               <Link to="/authentication/sign-in">
                 <IconButton sx={navbarIconButton} size="small">
-                  <Icon
-                    sx={({ palette: { dark, white } }) => ({
-                      color: light ? white.main : dark.main,
-                    })}
-                  >
+                  <Icon>
                     account_circle
                   </Icon>
                 </IconButton>
@@ -116,7 +97,7 @@ function DashboardNavbar({ absolute, light, isMini }) {
                 sx={navbarMobileMenu}
               >
                 <Icon className={light ? "text-white" : "text-dark"}>
-                  {miniSidenav ? "menu_open" : "menu"}
+                  {"menu"}
                 </Icon>
               </IconButton>
               <IconButton
@@ -133,7 +114,6 @@ function DashboardNavbar({ absolute, light, isMini }) {
                 sx={navbarIconButton}
                 aria-controls="notification-menu"
                 aria-haspopup="true"
-                variant="contained"
                 onClick={handleOpenMenu}
               >
                 <Icon className={light ? "text-white" : "text-dark"}>notifications</Icon>
@@ -141,24 +121,8 @@ function DashboardNavbar({ absolute, light, isMini }) {
               {renderMenu()}
             </SoftBox>
           </SoftBox>
-        )}
       </Toolbar>
-    </AppBar>
   );
 }
-
-// Setting default values for the props of DashboardNavbar
-DashboardNavbar.defaultProps = {
-  absolute: false,
-  light: false,
-  isMini: false,
-};
-
-// Typechecking props for the DashboardNavbar
-DashboardNavbar.propTypes = {
-  absolute: PropTypes.bool,
-  light: PropTypes.bool,
-  isMini: PropTypes.bool,
-};
 
 export default DashboardNavbar;

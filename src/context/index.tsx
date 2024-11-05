@@ -6,13 +6,15 @@ interface StateType {
   user?: string;
   sidenavColor: string;
   openConfigurator: boolean;
+  fixedNavbar: boolean;
 }
 
 // 액션 타입 정의
 type ActionType =
   | { type: "SET_PAGE"; payload: { page: string; user?: string } }
   | { type: "SIDENAV_COLOR"; payload: { sidenavColor: string } }
-  | { type: "CHANGE_CONFIG_STATE"; payload: { stateConfigurator: boolean } };
+  | { type: "CHANGE_CONFIG_STATE"; payload: { stateConfigurator: boolean } }
+  | { type: "FIXED_NAVBAR"; payload: { fixedNavbar: boolean } };
 
 // 초기 상태 정의
 const initialState: StateType = {
@@ -20,6 +22,7 @@ const initialState: StateType = {
   user: "user",
   sidenavColor: "pink",
   openConfigurator: true,
+  fixedNavbar: true
 };
 
 // 리듀서 함수 정의
@@ -40,6 +43,11 @@ function reducer(state: StateType, action: ActionType): StateType {
       return {
         ...state,
         openConfigurator: action.payload.stateConfigurator,
+      };
+    case "FIXED_NAVBAR":
+      return {
+        ...state,
+        fixedNavbar: action.payload.fixedNavbar,
       };
     default:
       throw Error;
@@ -85,4 +93,16 @@ const setOpenConfigurator = (dispatch: React.Dispatch<ActionType>, stateConfigur
   dispatch({ type: "CHANGE_CONFIG_STATE", payload: { stateConfigurator } });
 };
 
-export { PageProvider, usePageContext, setPage, setSidenavColor, setOpenConfigurator };
+
+const setFixedNavbar = (dispatch: React.Dispatch<ActionType>, fixedNavbar: boolean) => {
+  dispatch({ type: "FIXED_NAVBAR", payload: { fixedNavbar } })
+};
+
+export {
+  PageProvider,
+  usePageContext,
+  setPage,
+  setSidenavColor,
+  setOpenConfigurator,
+  setFixedNavbar
+};

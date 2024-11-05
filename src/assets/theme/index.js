@@ -78,7 +78,14 @@ import link from "assets/theme/components/link";
 
 export default createTheme({
   breakpoints: { ...breakpoints },
-  palette: { ...colors },
+  palette: {
+    ...colors,
+    white: colors.white,
+    dark: colors.dark,
+    transparent: colors.transparent,
+    // 추가: 필요한 속성 명시적으로 추가
+    text: colors.text,
+  },
   typography: { ...typography },
   boxShadows: { ...boxShadows },
   borders: { ...borders },

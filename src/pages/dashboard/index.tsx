@@ -6,8 +6,8 @@ import Icon from "@mui/material/Icon";
 import SoftBox from "components/SoftBox";
 
 // Soft UI Dashboard React examples
-import DashboardLayout from "components/LayoutContainers/DashboardLayout";
-import DashboardNavbar from "components/Navbars/DashboardNavbar";
+import DashboardLayout from "components/LayoutContainers";
+import DashboardNavbar from "components/Navbars";
 import Footer from "components/Footer";
 
 // Soft UI Dashboard React base styles
@@ -18,13 +18,17 @@ function Dashboard() {
   const { size } = typography;
 
   return (
+    <>
+      <div>
+        ba;lsdkjf;alskdjf;laskdjfl;ksadj
+      </div>
+    
     <DashboardLayout>
-      <DashboardNavbar />
       <SoftBox py={3}>
         <SoftBox mb={3}>
           <Grid container spacing={3}>
             <Grid item xs={12} sm={6} xl={3}>
-              
+             
             </Grid>
             <Grid item xs={12} sm={6} xl={3}>
               
@@ -68,6 +72,9 @@ function Dashboard() {
       </SoftBox>
       <Footer />
     </DashboardLayout>
+    
+    
+    </>
   );
 }
 
