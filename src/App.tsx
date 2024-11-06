@@ -10,6 +10,7 @@ import Icon from "@mui/material/Icon";
 
 // Soft UI Dashboard React themes
 import theme from "assets/theme";
+import themeRTL from "assets/theme/theme-rtl";
 
 // Side
 import Sidenav from "components/Sidenav";
@@ -77,18 +78,23 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Sidenav
-        color={sidenavColor}
-        brand={brand}
-        brandName="Lang Call"
-        routes={routes}
-        onMouseEnter={handleOnMouseEnter}
-        onMouseLeave={handleOnMouseLeave}
-      />
-      <Routes>
-        {getRoutes(routes)}
-      </Routes>
+      {/* <CssBaseline /> */}
+      <div style={{display:'flex', }}>
+        <>
+          <Sidenav
+            color={sidenavColor}
+            brand={brand}
+            brandName="Lang Call"
+            routes={routes}
+            onMouseEnter={handleOnMouseEnter}
+            onMouseLeave={handleOnMouseLeave}
+          />
+        </>
+        <Routes>
+          {getRoutes(routes)}
+          <Route path="*" element={<Navigate to="/dashboard" />} />
+        </Routes>
+      </div>
       {/* <Configurator /> */}
     </ThemeProvider>
   );

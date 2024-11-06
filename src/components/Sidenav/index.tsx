@@ -11,7 +11,7 @@ import Icon from "@mui/material/Icon";
 
 // component
 import SidenavCollapse from "components/Sidenav/SidenavCollapse";
-import SidenavRoot from "components/Sidenav/SidenavRoot"
+import SidenavRoot from "components/Sidenav/SidenavRootCustom"
 import SoftBox from 'components/SoftBox';
 
 import {usePageContext, setPage}  from 'context'
@@ -96,24 +96,22 @@ const Sidenav = ({ color = "pink", brand = "", brandName, routes, ...rest }: Sid
 
 
     return (
-        <>
-            <SidenavRoot open={true} miniSidenav={true}>
-                <SoftBox pt={3} pb={1} px={4} textAlign="center" >
-                    <SoftBox component={NavLink} to="/" display="flex" alignItems="center" background-color="blue">
-                        {brand && <SoftBox component="img" src={brand} alt="Soft UI Logo" width="2rem" />}
-                        <SoftBox
-                            width={!brandName && "100%"}
-                            textAlign="center"
-                            pl={2}
-                        >
-                            {brandName}
-                        </SoftBox>
+        <SidenavRoot open={true}>
+            <SoftBox pt={3} pb={1} px={4} textAlign="center" >
+                <SoftBox component={NavLink} to="/" display="flex" alignItems="center" background-color="blue">
+                    {brand && <SoftBox component="img" src={brand} alt="Soft UI Logo" width="2rem" />}
+                    <SoftBox
+                        width={!brandName && "100%"}
+                        textAlign="center"
+                        pl={2}
+                    >
+                        {brandName}
                     </SoftBox>
                 </SoftBox>
-                <Divider />
-                <List>{renderRoutes}</List>
-            </SidenavRoot>
-        </>
+            </SoftBox>
+            <Divider />
+            <List>{renderRoutes}</List>
+        </SidenavRoot>
     );
 }
 

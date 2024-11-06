@@ -5,32 +5,20 @@ interface StyledDrawerProps {
   miniSidenav: boolean;
 }
 
-export default styled(Drawer)<StyledDrawerProps>(({ theme, miniSidenav }) => {
+export default styled(Drawer)(({ theme }) => {
   const { palette, transitions, breakpoints } = theme;
   
   const sidebarWidth = 250;
   const { background } = palette;
-  const xxl  = "0px 10px 30px rgba(0, 0, 0, 0.1)";
+  const xxl = "0px 10px 30px rgba(0, 0, 0, 0.1)";
 
   // styles for the sidenav when miniSidenav={false}
   const drawerOpenStyles = {
-    transition: transitions.create("transform", {
+    width: sidebarWidth,
+    transition: transitions.create(["width", "background-color"], {
       easing: transitions.easing.sharp,
       duration: transitions.duration.shorter,
     }),
-
-    [breakpoints.up("xl")]: {
-      backgroundColor: background,
-      boxShadow: xxl,
-      marginBottom: "inherit",
-      left: "0",
-      width: sidebarWidth,
-      transform: "translateX(0)",
-      transition: transitions.create(["width", "background-color"], {
-        easing: transitions.easing.sharp,
-        duration: transitions.duration.enteringScreen,
-      }),
-    },
   };
 
   // styles for the sidenav when miniSidenav={true}
@@ -39,13 +27,12 @@ export default styled(Drawer)<StyledDrawerProps>(({ theme, miniSidenav }) => {
       easing: transitions.easing.sharp,
       duration: transitions.duration.shorter,
     }),
-
     [breakpoints.up("xl")]: {
       backgroundColor: background,
       boxShadow: xxl,
       marginBottom: "inherit",
       left: "0",
-      width: sidebarWidth, // 사이드바 너비 조정
+      width: sidebarWidth, // Sidebar width adjusted
       overflowX: "hidden",
       transform: "translateX(0)",
       transition: transitions.create(["width", "background-color"], {
@@ -57,9 +44,7 @@ export default styled(Drawer)<StyledDrawerProps>(({ theme, miniSidenav }) => {
 
   return {
     "& .MuiDrawer-paper": {
-      boxShadow: xxl,
-      border: "none",
-      ...(miniSidenav ? drawerCloseStyles : drawerOpenStyles),
+      ...drawerOpenStyles,
     },
   };
 });

@@ -17,11 +17,17 @@ import typography from "assets/theme/base/typography";
 function Dashboard() {
   const { size } = typography;
 
+  const handleClick = () =>{
+    console.log("cehck")
+  }
+
+
   return (
     <DashboardLayout>
       <div>
         dashbaord
       </div>
+      <button onClick={handleClick}>button</button>
     </DashboardLayout>
   );
 }
