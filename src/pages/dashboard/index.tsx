@@ -24,10 +24,12 @@ function Dashboard() {
 
   return (
     <DashboardLayout>
-      <div>
-        dashbaord
-      </div>
-      <button onClick={handleClick}>button</button>
+      <DashboardNavbar absolute={"static"} light={""}/>
+
+
+
+
+
     </DashboardLayout>
   );
 }

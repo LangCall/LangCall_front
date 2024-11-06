@@ -32,6 +32,7 @@ function DashboardLayout({ children }:dashboardLayoutProps) {
       sx={({transitions}:any) => ({
         p: 3,
         position: "relative",
+        width: '100vh',
         transition: transitions.create(["margin-left", "margin-right"], {
           easing: transitions.easing.easeInOut,
           duration: transitions.duration.standard,

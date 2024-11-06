@@ -23,11 +23,13 @@ export default function SidenavRoot({ open, children }: sideNavProps) {
         top: 0, // 페이지 상단에 고정
         height: '100vh', // 전체 화면 높이
         marginBottom: "inherit",
+        margin:2,
         zIndex: 1200,
       }}
       aria-label="sidenav"
     >
-      {children}
+      {/* 사이드바 하위 컴포넌트 */}
+      {children} 
     </Box>
   );
 }
