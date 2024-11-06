@@ -6,7 +6,7 @@ import Icon from "@mui/material/Icon";
 import SoftBox from "components/SoftBox";
 
 // Soft UI Dashboard React examples
-import DashboardLayout from "components/LayoutContainers";
+import DashboardLayout from "pages/LayoutContainers";
 import DashboardNavbar from "components/Navbars";
 import Footer from "components/Footer";
 
@@ -18,63 +18,11 @@ function Dashboard() {
   const { size } = typography;
 
   return (
-    <>
-      <div>
-        ba;lsdkjf;alskdjf;laskdjfl;ksadj
-      </div>
-    
     <DashboardLayout>
-      <SoftBox py={3}>
-        <SoftBox mb={3}>
-          <Grid container spacing={3}>
-            <Grid item xs={12} sm={6} xl={3}>
-             
-            </Grid>
-            <Grid item xs={12} sm={6} xl={3}>
-              
-            </Grid>
-            <Grid item xs={12} sm={6} xl={3}>
-              
-            </Grid>
-            <Grid item xs={12} sm={6} xl={3}>
-              
-            </Grid>
-          </Grid>
-        </SoftBox>
-        <SoftBox mb={3}>
-          <Grid container spacing={3}>
-            <Grid item xs={12} lg={7}>
-              
-            </Grid>
-            <Grid item xs={12} lg={5}>
-              
-            </Grid>
-          </Grid>
-        </SoftBox>
-        <SoftBox mb={3}>
-          <Grid container spacing={3}>
-            <Grid item xs={12} lg={5}>
-              
-            </Grid>
-            <Grid item xs={12} lg={7}>
-              
-            </Grid>
-          </Grid>
-        </SoftBox>
-        <Grid container spacing={3}>
-          <Grid item xs={12} md={6} lg={8}>
-            
-          </Grid>
-          <Grid item xs={12} md={6} lg={4}>
-            
-          </Grid>
-        </Grid>
-      </SoftBox>
-      <Footer />
+      <div>
+        dashbaord
+      </div>
     </DashboardLayout>
-    
-    
-    </>
   );
 }
 

@@ -1,7 +1,14 @@
 import React from 'react'
 
+import DashboardLayout from "pages/LayoutContainers";
+
+
 export default function Tables() {
   return (
-    <div>tables</div>
+    <>
+      <DashboardLayout>
+        <div>tables</div>
+      </DashboardLayout>
+    </>
   )
 }
