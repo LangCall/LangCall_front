@@ -25,6 +25,7 @@ export default function SidenavRoot({ open, children }: sideNavProps) {
         marginBottom: "inherit",
         margin:2,
         zIndex: 1200,
+        bgcolor: 'white.main',
       }}
       aria-label="sidenav"
     >
