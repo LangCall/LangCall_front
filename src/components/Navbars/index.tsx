@@ -38,7 +38,7 @@ import {
 
 interface dashboardNavbarProps {
   absolute: string,
-  light: string,
+  light: boolean,
 }
 
 

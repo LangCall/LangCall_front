@@ -15,7 +15,7 @@ export default function SidenavRoot({ open, children }: sideNavProps) {
       sx={{ 
         width: sidebarWidth,
         flexShrink: 0,
-        boxShadow: 1,
+        boxShadow: 10,
         borderRadius: 2,
         p: 2,
         border: 'none',
