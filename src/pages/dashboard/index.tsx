@@ -27,6 +27,7 @@ function Dashboard() {
     <DashboardLayout>
       <DashboardNavbar absolute={"static"} light={true}/>
       <SoftBox py={3} sx={{boxShadow: 1}}>
+        {/* 아래와 같은 코드로 생성하면 됩니다.
         
         <SoftBox mb={3} sx={{boxShadow:1}}>
           <Grid container spacing={3}>
@@ -69,7 +70,7 @@ function Dashboard() {
           <Grid item xs={12} md={6} lg={4}>
             
           </Grid>
-        </Grid>
+        </Grid> */}
       </SoftBox>
     </DashboardLayout>
   );
